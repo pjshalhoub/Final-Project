@@ -5,7 +5,7 @@
 //  Created by PJ Shalhoub on 11/30/17.
 //  Copyright © 2017 PJ Shalhoub. All rights reserved.
 //
-// IF ANYTHING DOESNT WORK, IT IS THE TEXT VIEW, REMOVE IF NECESSARY
+
 import UIKit
 
 class ImageViewController: UIViewController {
@@ -14,7 +14,7 @@ class ImageViewController: UIViewController {
     var imagePicker = UIImagePickerController()
     var imageStructArray = [ImageStruct]()
     var defaultsData = UserDefaults.standard
-    //var imageText = [String]()
+    var returningFromSave = false
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
@@ -25,7 +25,6 @@ class ImageViewController: UIViewController {
         collectionView.delegate = self
         collectionView.dataSource = self
         imagePicker.delegate = self
-        //collectionView.reloadData()
         readData()
 
     }
@@ -37,11 +36,27 @@ class ImageViewController: UIViewController {
         }
     }
     
+    @IBAction func unwindFromSave(segue: UIStoryboardSegue) {
+        returningFromSave = true
+        if let source = segue.source as? ImageDetailViewController, let updatedStruct = source.detailImageStruct {
+            if let indexPath = collectionView.indexPathsForSelectedItems?[0] {
+                imageStructArray[indexPath.row] = updatedStruct
+                writeData(image: updatedStruct.image)
+                
+            } else {
+                returningFromSave = false
+            }
+        } else {
+            returningFromSave = false
+        }
+        
+    }
+    
     func deleteData(index: Int) {
         let fileManager = FileManager.default
         let fileName = imageStructArray[index].fileName
         let document = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0]
-        let deletePath = document.appending(fileName)
+        let deletePath = document + "/" + fileName
         do {
             try fileManager.removeItem(atPath: deletePath)
             imageStructArray.remove(at: index)
@@ -75,34 +90,52 @@ class ImageViewController: UIViewController {
     
     func writeData(image: UIImage) {
         if let imageData = UIImagePNGRepresentation(image) {
-            let fileName = NSUUID().uuidString
-            let document = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0]
-            let writePath = document.appending(fileName)
+            var fileName = ""
+            var indexPath: IndexPath!
+            if (collectionView.indexPathsForSelectedItems?.count)! > 0, let selectedIndexPath = collectionView.indexPathsForSelectedItems?[0] {
+                indexPath = selectedIndexPath
+            }
+            
+            if returningFromSave {
+                fileName = imageStructArray[indexPath.row].fileName
+            } else {
+                fileName = NSUUID().uuidString
+            }
+            
+            let documents = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0]
+            let writePath = documents + "/" + fileName
             do {
                 try imageData.write(to: URL(fileURLWithPath: writePath))
-                imageStructArray.append(ImageStruct(image: image, fileName: fileName, imageDescription: "", text: ""))
+                if returningFromSave {
+                    imageStructArray[indexPath.row] = ImageStruct(image: image, fileName: fileName)
+                } else {
+                    imageStructArray.append(ImageStruct(image: image, fileName: fileName))
+                }
                 let urlArray = imageStructArray.map {$0.fileName}
                 defaultsData.set(urlArray, forKey: "photoURLs")
                 collectionView.reloadData()
             } catch {
-                print("Error trying to write imageData for URL \(writePath)")
+                print("Error in trying to write imageData for url \(writePath)")
             }
-            
         } else {
-            print("Error trying to convert image into a raw data file")
+            print("Error trying to convert image into a raw data file.")
         }
+        returningFromSave = false
     }
     
     func readData() {
+        
         if let urlArray = defaultsData.object(forKey: "photoURLs") as? [String] {
             for i in 0..<urlArray.count {
                 let fileManager = FileManager.default
                 let fileName = urlArray[i]
                 let document = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0]
-                let readPath = document.appending(fileName)
+                let readPath = document + "/" + fileName
                 if fileManager.fileExists(atPath: readPath) {
                     let newImage = UIImage(contentsOfFile: readPath)!
-                    imageStructArray.append(ImageStruct(image: newImage, fileName: fileName, imageDescription: "", text: ""))
+                    print("$$$$$$$")
+
+                    imageStructArray.append(ImageStruct(image: newImage, fileName: fileName))
                 } else {
                     print("No file file exists at path: \(readPath)")
                 }
@@ -113,7 +146,6 @@ class ImageViewController: UIViewController {
         }
         
     }
-    
     
 }
 

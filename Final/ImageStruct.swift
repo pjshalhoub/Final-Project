@@ -12,7 +12,4 @@ import UIKit
 struct ImageStruct {
     var image: UIImage
     var fileName: String
-    var imageDescription: String
-    var text: String
-    
 }
