@@ -12,7 +12,6 @@ import GooglePlaces
 
 class DetailViewController: UIViewController, UITextViewDelegate {
 
-    @IBOutlet weak var addImageBarButton: UIBarButtonItem!
     @IBOutlet weak var stadiumNameTextField: UITextField!
     @IBOutlet weak var teamNameTextField: UITextField!
     @IBOutlet weak var stadiumNameLabel: UILabel!
@@ -129,6 +128,23 @@ class DetailViewController: UIViewController, UITextViewDelegate {
             saveButton.isEnabled = true
         }
     }
+    
+    func checkStars() {
+        if oneStarImage.image == UIImage(named: "image0")! && twoStarImage.image == UIImage(named: "image0")! && threeStarImage.image == UIImage(named: "image0")! && fourStarImage.image == UIImage(named: "image0")! && fiveStarImage.image == UIImage(named: "image0")! {
+            stars = 0
+        } else if oneStarImage.image == UIImage(named: "image1")! && twoStarImage.image == UIImage(named: "image0")! && threeStarImage.image == UIImage(named: "image0")! && fourStarImage.image == UIImage(named: "image0")! && fiveStarImage.image == UIImage(named: "image0")! {
+            stars = 1
+        } else if oneStarImage.image == UIImage(named: "image1")! && twoStarImage.image == UIImage(named: "image1")! && threeStarImage.image == UIImage(named: "image0")! && fourStarImage.image == UIImage(named: "image0")! && fiveStarImage.image == UIImage(named: "image0")! {
+            stars = 2
+        } else if oneStarImage.image == UIImage(named: "image1")! && twoStarImage.image == UIImage(named: "image1")! && threeStarImage.image == UIImage(named: "image1")! && fourStarImage.image == UIImage(named: "image0")! && fiveStarImage.image == UIImage(named: "image0")! {
+            stars = 3
+        } else if oneStarImage.image == UIImage(named: "image1")! && twoStarImage.image == UIImage(named: "image1")! && threeStarImage.image == UIImage(named: "image1")! && fourStarImage.image == UIImage(named: "image1")! && fiveStarImage.image == UIImage(named: "image0")! {
+            stars = 4
+        } else if oneStarImage.image == UIImage(named: "image1")! && twoStarImage.image == UIImage(named: "image1")! && threeStarImage.image == UIImage(named: "image1")! && fourStarImage.image == UIImage(named: "image1")! && fiveStarImage.image == UIImage(named: "image1")! {
+            stars = 5
+        }
+        
+    }
 
     @IBAction func oneStarImageTapped(_ sender: UITapGestureRecognizer) {
         oneStarImage.image = UIImage(named: "image1")
@@ -179,6 +195,7 @@ class DetailViewController: UIViewController, UITextViewDelegate {
             sportsDetail?.stadiumName = stadiumNameTextField.text!
             sportsDetail?.teamName = teamNameTextField.text!
             sportsDetail?.stadiumInfo = textView.text
+            checkStars()
             sportsDetail?.stars = stars
         }
     }

@@ -552,7 +552,7 @@
                                     <constraint firstAttribute="height" constant="49" id="za2-5t-srb"/>
                                 </constraints>
                                 <items>
-                                    <barButtonItem title="Delete" id="9Tv-z2-1ml">
+                                    <barButtonItem systemItem="trash" id="9Tv-z2-1ml">
                                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <connections>
                                             <action selector="deleteButtonPressed:" destination="ul6-1q-lxW" id="e8R-yC-Ssu"/>
@@ -624,7 +624,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="powered-by-google" translatesAutoresizingMaskIntoConstraints="NO" id="duA-J5-dWd">
-                                <rect key="frame" x="81" y="610" width="144" height="66"/>
+                                <rect key="frame" x="81" y="610" width="199" height="66"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="66" id="yjR-Ip-hGM"/>
                                 </constraints>
@@ -638,15 +638,6 @@
                                 <color key="textColor" red="0.22119281830000001" green="0.39835810820000001" blue="0.91658074239999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qda-Mi-u6A">
-                                <rect key="frame" x="9" y="762" width="104" height="30"/>
-                                <state key="normal" title="Done">
-                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                                <connections>
-                                    <action selector="doneButtonPressed:" destination="04C-vX-S5b" eventType="touchUpInside" id="zlW-cD-HCl"/>
-                                </connections>
-                            </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="image2" translatesAutoresizingMaskIntoConstraints="NO" id="6FG-XA-lkA">
                                 <rect key="frame" x="16" y="107" width="343" height="349"/>
                             </imageView>
@@ -659,21 +650,31 @@
                                 <color key="textColor" red="0.22119281830000001" green="0.39835810820000001" blue="0.91658074239999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qda-Mi-u6A">
+                                <rect key="frame" x="23" y="762" width="104" height="30"/>
+                                <state key="normal" title="Done">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="doneButtonPressed:" destination="04C-vX-S5b" eventType="touchUpInside" id="zlW-cD-HCl"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="d59-eu-OhA" firstAttribute="trailing" secondItem="duA-J5-dWd" secondAttribute="trailing" constant="95" id="2m6-jA-6up"/>
                             <constraint firstItem="hRJ-WC-Ml2" firstAttribute="leading" secondItem="2Cg-k0-baJ" secondAttribute="leading" id="5T4-l0-yrZ"/>
                             <constraint firstItem="nOK-UX-Atf" firstAttribute="top" secondItem="d59-eu-OhA" secondAttribute="top" id="AQD-OQ-jq0"/>
                             <constraint firstItem="6FG-XA-lkA" firstAttribute="trailing" secondItem="hRJ-WC-Ml2" secondAttribute="trailing" id="Ds2-QS-hfI"/>
                             <constraint firstItem="duA-J5-dWd" firstAttribute="leading" secondItem="d59-eu-OhA" secondAttribute="leading" constant="81" id="Ec8-Gu-wXz"/>
-                            <constraint firstAttribute="bottom" secondItem="qda-Mi-u6A" secondAttribute="bottom" constant="20" symbolic="YES" id="Gib-jA-ksN"/>
+                            <constraint firstItem="d59-eu-OhA" firstAttribute="trailing" secondItem="qda-Mi-u6A" secondAttribute="trailing" constant="248" id="HGf-Ab-PbV"/>
+                            <constraint firstItem="qda-Mi-u6A" firstAttribute="leading" secondItem="d59-eu-OhA" secondAttribute="leading" constant="23" id="IoX-u4-17t"/>
                             <constraint firstItem="nOK-UX-Atf" firstAttribute="trailing" secondItem="fDA-xr-myl" secondAttribute="trailingMargin" id="KWX-TG-8hL"/>
                             <constraint firstItem="nOK-UX-Atf" firstAttribute="leading" secondItem="6FG-XA-lkA" secondAttribute="leading" id="Nvn-PP-OAm"/>
                             <constraint firstItem="nOK-UX-Atf" firstAttribute="leading" secondItem="fDA-xr-myl" secondAttribute="leadingMargin" id="Pum-JK-oVH"/>
+                            <constraint firstAttribute="bottom" secondItem="qda-Mi-u6A" secondAttribute="bottom" constant="20" symbolic="YES" id="Tia-fY-pbp"/>
                             <constraint firstItem="6FG-XA-lkA" firstAttribute="top" secondItem="nOK-UX-Atf" secondAttribute="bottom" constant="8" symbolic="YES" id="btY-gH-sRv"/>
                             <constraint firstItem="6FG-XA-lkA" firstAttribute="leading" secondItem="hRJ-WC-Ml2" secondAttribute="leading" id="dff-iK-CxG"/>
-                            <constraint firstItem="qda-Mi-u6A" firstAttribute="leading" secondItem="d59-eu-OhA" secondAttribute="leading" constant="9" id="eSZ-rz-lI2"/>
-                            <constraint firstItem="d59-eu-OhA" firstAttribute="trailing" secondItem="qda-Mi-u6A" secondAttribute="trailing" constant="262" id="eXK-Ij-rcX"/>
                             <constraint firstItem="2Cg-k0-baJ" firstAttribute="top" secondItem="hRJ-WC-Ml2" secondAttribute="bottom" constant="28" id="ete-ru-nTi"/>
                             <constraint firstItem="hRJ-WC-Ml2" firstAttribute="trailing" secondItem="2Cg-k0-baJ" secondAttribute="trailing" id="h6L-CU-SLV"/>
                             <constraint firstItem="nOK-UX-Atf" firstAttribute="trailing" secondItem="6FG-XA-lkA" secondAttribute="trailing" id="lZQ-aj-58X"/>
