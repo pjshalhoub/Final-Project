@@ -267,7 +267,7 @@
                                 <rect key="frame" x="16" y="197.66666666666666" width="343" height="22"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="words"/>
                                 <connections>
                                     <action selector="fieldNameChanged:" destination="ffv-FG-iPi" eventType="editingChanged" id="2vJ-Xo-7QB"/>
                                 </connections>
