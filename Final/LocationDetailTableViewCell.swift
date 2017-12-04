@@ -28,11 +28,5 @@ class LocationDetailTableViewCell: UITableViewCell {
 
     }
     
-   /*
-    func update(with location: SportsDetail) {
-        stadiumNameLabel.text = location.location
-        postedByLabel.text = location.postedBy
-    }
-*/
 
 }

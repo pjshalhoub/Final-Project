@@ -43,7 +43,6 @@ class DetailViewController: UIViewController, UITextViewDelegate {
         self.view.addGestureRecognizer(tap)
         navigationItem.title = "Save a Stadium"
         textView.delegate = self
-        //self.navigationItem.title = navItemTitle
         if let sportsDetail = sportsDetail {
             stadiumNameTextField.text = sportsDetail.stadiumName
             teamNameTextField.text = sportsDetail.teamName
@@ -92,7 +91,7 @@ class DetailViewController: UIViewController, UITextViewDelegate {
         if stadiumNameTextField.text! == "" || teamNameTextField.text! == "" || textView.text! == "" {
             saveButton.isEnabled = false
         }
-        //stadiumNameTextField.becomeFirstResponder()
+        
     }
     
     @IBAction func cancelButtonPressed(_ sender: UIBarButtonItem) {

@@ -16,7 +16,6 @@ class ViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var editButton: UIBarButtonItem!
     @IBOutlet weak var addButton: UIBarButtonItem!
-    //var imageArray = [UIImage]()
     var sportsDetailArray = [SportsDetail]()
     var defaultsData = UserDefaults.standard
     
